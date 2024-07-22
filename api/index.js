@@ -1,4 +1,4 @@
-import User from '../model/user';
+import User from './model/user';
 
 const express = require('express');
 const mongoose = require('mongoose');
