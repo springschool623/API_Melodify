@@ -1,3 +1,5 @@
+import User from '../model/user';
+
 const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
@@ -17,6 +19,15 @@ mongoose.connect(process.env.MONGODB_URI, {
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
+
+app.get('/users', async (req,res) => {
+  try {
+    const users = await User.find();
+    res.status(200).json(users);
+  } catch (error) {
+      res.status(500).json({ message: error.message });
+  }
+})
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
